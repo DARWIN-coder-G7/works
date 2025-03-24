@@ -1,0 +1,137 @@
+webpack  config  for microfrontend
+
+host 
+    new ModuleFederationPlugin({
+        name:'app_1',
+        remotes:{
+            app_2:"app_2@http://localhost:3002/remoteEntry.js",
+        },
+        shared:{
+            react:"^17.0.2",
+            "react-dom":"^17.0.2",
+        },
+    })
+
+remote
+
+new ModuleFederationPlugin({
+        name:'app_2',
+        fileName:"remoteEntry.js",
+        exposes:{
+            "./MyComponent":"./src/App",
+        },
+        shared:{
+            react:"^17.0.2",
+            "react-dom":"^17.0.2",
+        },
+})
+
+ng new mono-workspace --createApplication="false"
+
+ng g application host-app --routing --style=scss
+
+ng g application mfe-app --routing --style=scss
+
+npm i webpack webpack-cli --save-dev
+
+ng add @angular-architects/module-federation --project host-app --port 4200
+ng add @angular-architects/module-federation --project mfe-app --port 4300
+
+
+ng s mfe-app -o
+ng s host-app -o
+
+
+
+--------------------------------nodejs ---------------------------------
+Event Driven Architecture
+Non-Blocking I/O
+Worker threads
+
++Good for real timechat , onlineGaming, lightweight scalable RESTFUL APIs
+
++Not for heavy Computations ,digital Image/Video Processing , DATA encryption or decryption
+
+pathmodule fsmodule httpmodule  osmodule eventsmodule
+
+pathmodule+++++++++ 
+methods  -- join(),resole(resolving the absolute path),dirName(),extName(),parse(give all props as an obj)
+
+fsmodule++++++++++++
+methods -- unlink(delete),readFile(),writeFile(),appendFile(),mkdir(),rmdir()
+
+osModule++++++   set of methods to interact with operating system
+const os = require('os');
+os.type();
+os.userInfo();
+os.totalmem();//memory info in bytes
+os.freemem();//memory info in bytes
+
+eventsmodule+++++++++
+const event = require('events');
+
+const myEvent = new event();
+
+//Register an EVENT listener(EventName)
+myEvent.on('eventName',()=>{
+console.log('Event Occured');
+});
+
+myEvent.emit('eventName');
+
+first we have to register the events then only we can Emit
+
+event Arguments
+
+myEvent.on('eventName',(arg1,arg2)=>{
+console.log('Event Occured');
+});
+
+myEvent.emit('eventName','Arg1','Arg2');
+
+httpModule++++++++++
+
+const http = require('http');
+const server = http.createServer((req,res)=>{
+    res.end("Hello World!");//can see in the browser in pageUI
+})
+
+server.listen(3000,()=>{
+    console.log("Listening TO Port Number 3000");
+})
+
+001.why process.nextTick() is faster than setImmediate() ?
+
+ process.nextTick()  Executes Before I/O phase or timer events the Event Loop in microTaskQueue
+
+ setImmediate()  runs after I/O phase   in the event Loop but before set TimeOut()
+
+ sync ---  process.nextTick() ---  setImmediate()
+
+002.how node js handles multiple CPU cores
+  utilize multiple cores using the Cluster module and worker threads
+
+003.prevent CallBack Hell In Node js
+  by promises or by Async await
+
+004.Event Loop Phases in Node.js
+ Timers, Pending Call Backs, Idle/Prepare,
+ poll(new I/O events),check(setImmediate), 
+ close Callbacks(Clean Up tasks like Socket.On)
+
+005.why does Await inside a loop is a bad Idea in Node.js
+  instead use promise.all() for parallel execution
+
+  because await blocks execution until a promise resolves,causing sequential Execution.
+
+006.what happens when you call require() multiple times for the same module
+
+  node js caches the module after the first require()
+
+007.fs.readFile() vs fs.createReadStream()?
+fs.readFile() -- loads entire fileintomemory making it inefficient for large files
+
+fs.createReadStream() -- reads data in chunks preventing memory Overflow
+
+008.res.end() twice  in an Http Server?
+   throw an error cannot set headers after they are sent

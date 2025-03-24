@@ -1,0 +1,30 @@
+function findMissingLetter(arr) {
+   return approach002(arr);
+}
+
+function approach001(arr) {
+
+    const alphaBet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const startIndex = alphaBet.indexOf(arr[0]);
+
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] !== alphaBet[startIndex + i]) {
+            return alphaBet[startIndex + i];
+        }
+    }
+    return '';
+}
+
+function approach002(arr){
+    let start = arr[0].charCodeAt(0);
+    for(let i=0 ; i < arr.length ; i++ ){
+        const current = arr[i].charCodeAt(0);
+        if(current - start >1){
+            return String.fromCharCode(start+1);
+        }
+        start = current;
+    }
+    return '';
+}
+
+module.exports = findMissingLetter;
