@@ -1,6 +1,54 @@
-
+Right To Left   in Numbers 
      123     100 10 1     10 power of 2  10 power of 1  10 power of 0
 
      normal Real world things
 
      421    in Programming  2 power of 2 -- 2 power of 1 -- 2 power of 0
+
+     8 bits = 1 byte
+
+     A is 65 90 For Z     01000001
+
+     a is 97 z is 122
+
+     0 is 48  9 is 57
+
+     ASCII  American Standard Code Information InterChange
+
+     72   73    33   ====>     Hi!
+
+    UniCode   32 bits   4 billion possible permutations to show soemthing apart from the AsCii like emoji and other language letters
+
+    Same Emoji With  Different skins 
+          1 bit will reprenst the structure of the text
+
+    RGB   a number represents how much red on that pixel   ranges from 0 to 255
+          a number represents how much green on that pixel   ranges from 0 to 255
+          a number represents how much blue on that pixel   ranges from 0 to 255
+    
+    Abstraction  problem solving Algorithm
+
+    Phone Book Algorithm
+
+       1 Pickup the PhoneBook
+       2 Open to middle of phone Book
+       3 Look at Page
+       4 If - person is on Page
+       5    Call person
+       6 Else if - person is Earlier in Book
+       7    Open to middle of left half of Book
+       8    ++Go Back To Line 3
+       9 Else if - person is later in Book
+       10    Open to middle of right half of book
+       11    ++Go Back To Line 3
+       12 Else
+       13    Quit
+
+1 Functions
+    arguments,return values
+2 Conditionals
+3 Boolean Expressions
+4 Loops
+5 Variables
+
+inputs are arguments  algorithms are functions anf then outputs are return values
